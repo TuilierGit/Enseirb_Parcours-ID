@@ -21,10 +21,11 @@ Puis de l'activer avec la commande :
   source pid-env/bin/activate
 ```
 
-Une fois cela réaliser, on va installer les différents packages avec
+Une fois cela réalisé, on va installer les différents packages ainsi que frama-c avec
 
 ```
-  ./install.sh
+  make install
 ```
+**Remarque :** Le mot de passe root est nécessaire pour installer frama-c.
 
 Maintenant il faut ajouter une clé API, pour réaliser cela on va se rendre sur le [site d'OpenAI](https://platform.openai.com/api-keys) dans la partie des clés API
