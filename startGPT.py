@@ -5,12 +5,14 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-#################################################################
-
 # Mise en place de nos variables globales
 GPT_version = "gpt-3.5-turbo"
 GPT_temperature = 0.2
 GPT_max_tokens = 15
+
+###########################
+##    Fonctions utiles   ##
+###########################
 
 
 def askGPT(myPrompt, temperature=GPT_temperature, maxTokens=GPT_max_tokens, gptVersion = GPT_version):
@@ -21,9 +23,6 @@ def askGPT(myPrompt, temperature=GPT_temperature, maxTokens=GPT_max_tokens, gptV
     # , max_tokens=GPT_max_tokens
   )
   return response
-
-
-#################################################################
 
 
 def readProgram(programPath):
@@ -37,6 +36,10 @@ def getInvariant(program):
   GPT_Prompt = "Compute a loop invariant for the following program!\n" + program,
   return askGPT(GPT_Prompt)
 
+
+#######################
+##    Partie Main    ##
+#######################
 
 
 if __name__ == "__main__":
