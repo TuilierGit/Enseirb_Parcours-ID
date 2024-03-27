@@ -21,16 +21,16 @@ fi
 
 
 # Installation de Frama-C
-
+fichierPro=".profile"
 read -p "Faire l'installation de Frama-C ? (oui/non) : " reponseFC
 case "$reponseFC" in
     oui)
 			echo "Creation du fichier .profile"
-			if [ -e "$fichierEnv" ];
+			if [ -e "$fichierPro" ];
 			then
 				echo "--Le fichier .profile existe déjà."
 			else
-				touch ./frama-c/.profile
+				touch ./.profile
 				echo "--Creation : OK"
 			fi
 

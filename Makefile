@@ -2,8 +2,8 @@ install:
 	chmod +x scripts/*
 	. ./scripts/install.sh
 
-unistall:
-	. ./scripts/unistall.sh
+uninstall:
+	. ./scripts/uninstall.sh
 
 gpt:
 	python3 ./src/startGPT.py
