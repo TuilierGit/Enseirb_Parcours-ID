@@ -21,7 +21,7 @@ _max_tokens = 500
 
 
 
-def ask_my_model( prompt,model = LLM_model, mt = _max_tokens,temp = _temperature, number_of_answers=1):
+def ask_my_model( prompt,model = LLM_model,number_of_answers=1, mt = _max_tokens,temp = _temperature):
   response = openai.Completion.create(
     model=model,
     prompt=prompt,
@@ -42,33 +42,29 @@ def readProgram(programPath):
 
 
 
-def getInvariant(program):
+def getInvariant(program,number_of_answers=1 ):
   GPT_Prompt = "Compute a loop invariant for the following program!\n" + program,
-  return ask_my_model(GPT_Prompt)
+  return ask_my_model(GPT_Prompt,number_of_answers)
+
+def get_filename_from_path(file_path):
+    filename = os.path.basename(file_path)
+    return filename
+
+def run(path, n = 1):
+  line = "========================================="
+  exemple = readProgram(path)
+  invariant = getInvariant(exemple).to_dict()
+  print(f"\n\t\033[1m{get_filename_from_path(path)}\033[0m\n{line}\n\n\033[94m{exemple}\033[0m\n\n{line}")
+  print(f"\n\033[92m{invariant['choices'][0]['text']}\033[0m")
+  print(f"\n{line}")
 
 
 #######################
 ##    Partie Main    ##
 #######################
 
-
 if __name__ == "__main__":
-  example1 = readProgram("./examples/naive/loops-count_up_down-1.c")
-  example2 = readProgram("./examples/naive/underapprox_1-2.c")
-  example3 = readProgram("./examples/naive/benchmark04_conjunctive.c")
 
-  ex1_Invariant = getInvariant(example1).to_dict()
-  ex2_Invariant = getInvariant(example2).to_dict()
-  ex3_Invariant = getInvariant(example3).to_dict()
-  
-  print(f"\n\tExemple 1:\n==============================\n\n\033[94m{example1}\033[0m\n\n==============================")
-  print(f"\n\033[92m{ex1_Invariant['choices'][0]['text']}\033[0m")
-  print("\n==============================")
-
-  print(f"\n\tExemple 2:\n==============================\n\n\033[94m{example2}\033[0m\n\n==============================")
-  print(f"\n\033[92m{ex2_Invariant['choices'][0]['text']}\033[0m")
-  print("\n==============================")
-
-  print(f"\n\tExemple 3:\n==============================\n\n\033[94m{example2}\033[0m\n\n==============================")
-  print(f"\n\033[92m{ex3_Invariant['choices'][0]['text']}\033[0m")
-  print("\n==============================")
+  run("./examples/naive/loops-count_up_down-1.c")
+  run("./examples/naive/underapprox_1-2.c")
+  run("./examples/naive/benchmark04_conjunctive.c")
