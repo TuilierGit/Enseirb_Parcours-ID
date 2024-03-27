@@ -25,38 +25,39 @@ fi
 read -p "Faire l'installation de Frama-C ? (oui/non) : " reponseFC
 case "$reponseFC" in
     oui)
-		echo "Creation du fichier .profile"
-		if [ -e "$fichierEnv" ];
-		then
-			echo "--Le fichier .profile existe déjà."
-		else
-			touch ./frama-c/.profile
-			echo "--Creation : OK"
-		fi
-		sudo apt install opam
+			echo "Creation du fichier .profile"
+			if [ -e "$fichierEnv" ];
+			then
+				echo "--Le fichier .profile existe déjà."
+			else
+				touch ./frama-c/.profile
+				echo "--Creation : OK"
+			fi
 
 
-		read -p "Voulez-vous déjà installé opam ? (oui/non) : " reponse
+			read -p "Voulez-vous déjà installé opam ? (oui/non) : " reponse
 
-		# Vérifier la réponse de l'utilisateur
-		case "$reponse" in
-			oui)
-				echo "Vous avez choisi de continuer."
-				# Action à effectuer si la réponse est "oui"
-				# Exemple : exécuter une commande ou un script
-				;;
-			non)
-				echo "Vous avez choisi de ne pas continuer."
-				# Action à effectuer si la réponse est "non"
-				opam init --compiler 4.14.1 f ./.profile
-				opam install frama-c
-				;;
-			*)
-				echo "Réponse invalide. Veuillez répondre par 'oui' ou 'non'."
-				# Action à effectuer si la réponse n'est ni "oui" ni "non"
-				;;
-		esac
-		;;
+			# Vérifier la réponse de l'utilisateur
+			case "$reponse" in
+				oui)
+					echo "Vous avez choisi de continuer."
+					# Action à effectuer si la réponse est "oui"
+					# Exemple : exécuter une commande ou un script
+					;;
+				non)
+					echo "Vous avez choisi de ne pas continuer."
+					# Action à effectuer si la réponse est "non"
+					sudo apt install opam
+					;;
+				*)
+					echo "Réponse invalide. Veuillez répondre par 'oui' ou 'non'."
+					# Action à effectuer si la réponse n'est ni "oui" ni "non"
+					;;
+			esac
+			opam init --compiler 4.14.1 # répondre f ./.profile
+			opam install frama-c
+			#rm -f ~/.why3.conf ; why3 config detect # code peut être nécessaire
+			;;
     *)
         echo "Ne pas installer Frama-C"
         ;;

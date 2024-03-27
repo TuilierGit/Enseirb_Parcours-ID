@@ -24,8 +24,17 @@ Puis de l'activer avec la commande :
 Une fois cela réalisé, on va installer les différents packages ainsi que frama-c avec
 
 ```
-  make install
+  sudo make install
 ```
+
 **Remarque :** Le mot de passe root est nécessaire pour installer frama-c.
+
+Au moment d'initialiser le profile de frama c il vaut mieux répondre f puis :
+
+```
+  ./.profile
+```
+
+Pour utiliser le profile du dossier
 
 Maintenant il faut ajouter une clé API, pour réaliser cela on va se rendre sur le [site d'OpenAI](https://platform.openai.com/api-keys) dans la partie des clés API
