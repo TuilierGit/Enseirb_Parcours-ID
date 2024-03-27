@@ -3,24 +3,33 @@ import openai
 from dotenv import load_dotenv
 
 load_dotenv()
+
+openai.api_base = "http://localhost:4891/v1"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
 # Mise en place de nos variables globales
-GPT_version = "gpt-3.5-turbo"
-GPT_temperature = 0.2
-GPT_max_tokens = 15
+LLM_model = "Mistral OpenOrca"
+#GPT_version = "gpt-3.5-turbo"
+_temperature = 0.2
+_max_tokens = 500
 
 ###########################
 ##    Fonctions utiles   ##
 ###########################
 
 
-def askGPT(myPrompt, temperature=GPT_temperature, maxTokens=GPT_max_tokens, gptVersion = GPT_version):
-  response = openai.completions.create(
-    model=gptVersion,
-    prompt=myPrompt,
-    temperature=GPT_temperature
-    # , max_tokens=GPT_max_tokens
+
+def ask_my_model( prompt,model = LLM_model, mt = _max_tokens,temp = _temperature, number_of_answers=1):
+  response = openai.Completion.create(
+    model=model,
+    prompt=prompt,
+    max_tokens=mt,
+    temperature=temp,
+    #top_p=0.95, # limite la somme cumulative des probabilités des tokens 
+    n=number_of_answers, # nombre de réponse
+    echo=True, # est ce qu'on ecrit la question dans la réponse
+    stream=False #  détermine si les résultats doivent être retournés en entier ou s'ils doivent être diffusés en continu.
   )
   return response
 
@@ -34,7 +43,7 @@ def readProgram(programPath):
 
 def getInvariant(program):
   GPT_Prompt = "Compute a loop invariant for the following program!\n" + program,
-  return askGPT(GPT_Prompt)
+  return ask_my_model(GPT_Prompt)
 
 
 #######################

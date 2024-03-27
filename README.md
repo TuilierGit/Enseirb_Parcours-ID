@@ -47,3 +47,11 @@ Configuration dans le logiciel :
 - Default model : Mistral OpenOrca (pour commencer)
 
 Aller ensuite dans server Chat
+
+## Lancer le code
+
+Il suffit de faire la commande suivante :
+
+```
+  make run
+```

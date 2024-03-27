@@ -8,7 +8,7 @@ uninstall:
 gpt4all:
 	./~/Software/GPT-4-all/bin/chat
 
-gpt:
+run:
 	python3 ./src/startGPT.py
 
 framactest:
