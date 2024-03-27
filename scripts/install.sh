@@ -2,7 +2,8 @@
 
 # Modules a installer
 echo "Installation des modules python."
-pip install --upgrade openai
+pip install openai==0.28
+#pip install --upgrade openai
 pip install --upgrade python-dotenv
 
 
@@ -20,6 +21,22 @@ else
 fi
 
 
+# Installation de GPT-4 all
+
+read -p "Faire l'installation de GPT-4 all? (oui/non) : " reponseGPT
+case "$reponseGPT" in
+    oui)
+			echo "Installation de GPT-4 all"
+			./scripts/gpt4all-installer-linux.run
+			;;
+		non)
+			echo "Vous avez choisi de ne pas installer GPT-4 all"
+			;;
+		*)
+			echo "Réponse invalide. Veuillez répondre par 'oui' ou 'non'."
+			;;
+esac
+
 # Installation de Frama-C
 fichierPro=".profile"
 read -p "Faire l'installation de Frama-C ? (oui/non) : " reponseFC
@@ -35,7 +52,7 @@ case "$reponseFC" in
 			fi
 
 
-			read -p "Voulez-vous déjà installé opam ? (oui/non) : " reponse
+			read -p "Avez vous déjà installé opam ? (oui/non) : " reponse
 
 			# Vérifier la réponse de l'utilisateur
 			case "$reponse" in

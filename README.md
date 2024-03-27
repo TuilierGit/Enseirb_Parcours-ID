@@ -38,3 +38,12 @@ Au moment d'initialiser le profile de frama c il vaut mieux répondre f puis :
 Pour utiliser le profile du dossier
 
 Maintenant il faut ajouter une clé API, pour réaliser cela on va se rendre sur le [site d'OpenAI](https://platform.openai.com/api-keys) dans la partie des clés API
+
+## Installation et mise en place de GPT4-all
+
+Configuration dans le logiciel :
+
+- Enable API server : OK
+- Default model : Mistral OpenOrca (pour commencer)
+
+Aller ensuite dans server Chat

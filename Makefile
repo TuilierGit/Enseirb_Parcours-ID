@@ -5,6 +5,9 @@ install:
 uninstall:
 	. ./scripts/uninstall.sh
 
+gpt4all:
+	./~/Software/GPT-4-all/bin/chat
+
 gpt:
 	python3 ./src/startGPT.py
 

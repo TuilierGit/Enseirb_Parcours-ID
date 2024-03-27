@@ -43,6 +43,6 @@ def getInvariant(program):
 
 
 if __name__ == "__main__":
-  example1 = readProgram("../examples/naive/loops-count_up_down-1.c")
+  example1 = readProgram("./examples/naive/loops-count_up_down-1.c")
   ex1_Invariant = getInvariant(example1)
   print(ex1_Invariant)
