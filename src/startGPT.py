@@ -19,7 +19,11 @@ _max_tokens = 500
 
 
 answer_path = "./examples/answer.c"
+answer_h_path =  "./examples/answer.h"
 commande = "frama-c -wp "
+
+
+include_list = "#include \"assert.h\""
 
 
 ###########################
@@ -82,9 +86,12 @@ def run2(path, n = 1):
   #print(f"\n\033[92m{__invariant}\033[0m")
   print(f"\n\t\033[1m{get_filename_from_path(path)}\033[0m\n{line}\n\n\033[94m{exemple}\033[0m\n\n{line}")
   print(f"\n\033[92m{invariant['choices'][0]['text']}\033[0m")
+
+  print(f"\n{line}\n")
   
   remplacer_invariant(answer_path, __invariant)
-  subprocess.run(commande + answer_path , shell=True)
+  extraire_contenu(answer_path, answer_h_path, include_list)
+  subprocess.run(commande + answer_path + " " + answer_h_path , shell=True)
   print(f"\n{line}")
 
 
@@ -97,8 +104,8 @@ def run2(path, n = 1):
 
 if __name__ == "__main__":
 
-  run2("./examples/naive/loops-count_up_down-1.c")
-  run2("./examples/naive/underapprox_1-2.c")
+  #run2("./examples/naive/loops-count_up_down-1.c")
+  #run2("./examples/naive/underapprox_1-2.c")
   run2("./examples/naive/benchmark04_conjunctive.c")
 
   # run2("./examples/not_naive/count_up_down-1.c")
