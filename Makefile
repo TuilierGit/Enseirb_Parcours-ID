@@ -2,7 +2,7 @@ gpt4all:
 	./~/Software/GPT-4-all/bin/chat
 
 run:
-	python3 ./src/startGPT.py
+	python3 ./src/main.py
 
 install:
 	chmod +x scripts/*

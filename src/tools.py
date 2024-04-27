@@ -52,7 +52,7 @@ def extraire_arguments(declaration):
     return ", ".join(arguments)
 
 
-def extraire_contenu(fichier_entree, fichier_sortie, include_list):
+def extraire_contenu(fichier_entree, fichier_sortie, include_list,invariant):
     # Ouvrir le fichier d'entrée en lecture
     with open(fichier_entree, 'r') as file_in:
         contenu = file_in.read()
@@ -67,6 +67,7 @@ def extraire_contenu(fichier_entree, fichier_sortie, include_list):
         
         # Écrire les conditions
         file_out.write("/*\n")
+        file_out.write(f"@ ensures A: {invariant}\n")
         file_out.write(f"  @ assigns {extraire_arguments(declaration)}\n")
         file_out.write("*/\n\n")
         
