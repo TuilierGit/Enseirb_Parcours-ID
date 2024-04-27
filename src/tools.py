@@ -8,17 +8,6 @@ def copier_fichier(fichier_A, fichier_B):
         file_A.write(contenu_B)
 
 
-def extraire_invariant(chaine):
-    # Supprimer les espaces inutiles et diviser la chaîne en fonction de ":"
-    chaine = chaine.strip()
-    chaine = chaine.split(":")
-    
-    # Vérifier si la chaîne commence par "//@ loop invariant mask:"
-    if chaine[0] == "//@ loop invariant mask":
-        # Retourner la partie après le ":"
-        return chaine[1].strip()
-
-
 
 def remplacer_invariant(fichier_A, invariant):
     # Lire le contenu du fichier A

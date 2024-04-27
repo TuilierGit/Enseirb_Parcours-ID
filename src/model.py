@@ -2,8 +2,16 @@
 import openai
 
 
-def get_invariant_from_response(answer):
+def get_invariant_sentence_from_response(answer):
     return answer['choices'][0]['text']
+
+
+def get_invariant_from_invariant_sentence(chaine):
+    chaine = chaine.strip()
+    chaine = chaine.split(":")
+    
+    if chaine[0] == "//@ loop invariant mask":
+        return chaine[1].strip()
 
 
 class model:

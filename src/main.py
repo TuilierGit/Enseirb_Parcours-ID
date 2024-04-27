@@ -1,5 +1,5 @@
 from file import *
-from model import model, get_invariant_from_response
+from model import model, get_invariant_sentence_from_response, get_invariant_from_invariant_sentence
 from print import *
 from framaC import checking_the_invariant
 import openai
@@ -19,11 +19,12 @@ def run(path):
     exemple = read_file(path)
     print_file(path, exemple)
 
-    invariant = get_invariant_from_response(myModel.response_with_long_prompt(exemple))
-    print_invariant(invariant)
+    invariant_sentence = get_invariant_sentence_from_response(myModel.response_with_long_prompt(exemple))
+    print_invariant(invariant_sentence)
+    invariant = get_invariant_from_invariant_sentence(invariant_sentence)
 
     validation = checking_the_invariant( path,invariant)
-    print_validation(validation)
+    #print_validation(validation)
 
 
 
