@@ -58,7 +58,21 @@ def transformer_et_ecrire_dossier(chemin_dossier):
             transformer_et_ecrire_fichier(chemin_fichier)
 
 
-dossier_a_traiter = "./loop-crafted"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
-transformer_et_ecrire_dossier(dossier_a_traiter)
+def tous_les_dossiers(chemin_dossier):
+    # Parcours de tous les éléments du dossier
+    for nom_element in os.listdir(chemin_dossier):
+        chemin_element = os.path.join(chemin_dossier, nom_element)
+        # Vérifier si l'élément est un dossier
+        if os.path.isdir(chemin_element):
+            try:
+                transformer_et_ecrire_dossier(chemin_element)
+            except: 
+                print(chemin_element)
+
+
+
+
+dossier_a_traiter = "./"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
+tous_les_dossiers(dossier_a_traiter)
 # fichier_a_traiter = "./loop-acceleration/array_1-1.c"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
 # transformer_et_ecrire_fichier(fichier_a_traiter)

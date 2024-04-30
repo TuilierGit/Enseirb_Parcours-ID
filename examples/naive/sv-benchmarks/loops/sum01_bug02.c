@@ -1,13 +1,3 @@
-extern void abort(void);
-#include <assert.h>
-void reach_error() { assert(0); }
-
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
 #define a (2)
 extern unsigned int __VERIFIER_nondet_uint();
 int main() { 
@@ -20,5 +10,5 @@ int main() {
     sn = sn + a;
     j--;
   }
-  __VERIFIER_assert(sn==((long long) n)*a || sn == 0);
+//@ assert sn==((long long) n)*a || sn == 0;
 }

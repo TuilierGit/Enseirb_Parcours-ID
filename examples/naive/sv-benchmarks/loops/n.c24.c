@@ -1,25 +1,3 @@
-extern void abort(void);
-#include <assert.h>
-void reach_error() { assert(0); }
-
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
-#include <string.h>
-extern int __VERIFIER_nondet_int(void);
-
-int bar(char *x)
-{
-  return __VERIFIER_nondet_int();
-}
-
-int foo(int * x){
-   *x = __VERIFIER_nondet_int();
-   return *x;
-}
 int main(){
    int i,j,ret,offset, tmp_cnt, tel_data,klen;
    /* source snippet*/
@@ -87,7 +65,6 @@ int main(){
             }
       }
    }
-   __VERIFIER_assert(offset>=0 && offset<=1000);
+//@ assert offset>=0 && offset<=1000;
    return 1;
 }
-

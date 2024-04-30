@@ -1,87 +1,3 @@
-extern void abort(void);
-extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "ludcmp.c", 3, "reach_error"); }
-
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
-/*************************************************************************/
-/*                                                                       */
-/*   SNU-RT Benchmark Suite for Worst Case Timing Analysis               */
-/*   =====================================================               */
-/*                              Collected and Modified by S.-S. Lim      */
-/*                                           sslim@archi.snu.ac.kr       */
-/*                                         Real-Time Research Group      */
-/*                                        Seoul National University      */
-/*                                                                       */
-/*                                                                       */
-/*        < Features > - restrictions for our experimental environment   */
-/*                                                                       */
-/*          1. Completely structured.                                    */
-/*               - There are no unconditional jumps.                     */
-/*               - There are no exit from loop bodies.                   */
-/*                 (There are no 'break' or 'return' in loop bodies)     */
-/*          2. No 'switch' statements.                                   */
-/*          3. No 'do..while' statements.                                */
-/*          4. Expressions are restricted.                               */
-/*               - There are no multiple expressions joined by 'or',     */
-/*                'and' operations.                                      */
-/*          5. No library calls.                                         */
-/*               - All the functions needed are implemented in the       */
-/*                 source file.                                          */
-/*                                                                       */
-/*                                                                       */
-/*************************************************************************/
-/*                                                                       */
-/*  FILE: ludcmp.c                                                       */
-/*  SOURCE : Turbo C Programming for Engineering                         */
-/*                                                                       */
-/*  DESCRIPTION :                                                        */
-/*                                                                       */
-/*     Simultaneous linear equations by LU decomposition.                */
-/*     The arrays a[][] and b[] are input and the array x[] is output    */
-/*     row vector.                                                       */
-/*     The variable n is the number of equations.                        */
-/*     The input arrays are initialized in function main.                */
-/*                                                                       */
-/*                                                                       */
-/*  REMARK :                                                             */
-/*                                                                       */
-/*  EXECUTION TIME :                                                     */
-/*                                                                       */
-/*                                                                       */
-/*************************************************************************/
-
-
-
-
-
-/*
-** Benchmark Suite for Real-Time Applications, by Sung-Soo Lim
-**     
-**    III-4. ludcmp.c : Simultaneous Linear Equations by LU Decomposition
-**                 (from the book C Programming for EEs by Hyun Soon Ahn)
-*/
-
-
-
-double a[50][50], b[50], x[50];
-
-int ludcmp(int nmax, int n, double eps);
-
-
-static double fabs(double n)
-{
-  double f;
-
-  if (n >= 0) f = n;
-  else f = -n;
-  return f;
-}
-
 int main()
 {
 
@@ -99,7 +15,7 @@ int main()
 					if(i == j) a[i][j] *= 10.0;
 					w += a[i][j];
 			}
-                        __VERIFIER_assert(i==2);
+//@ assert i==2;
 			b[i] = w;	
 	}
 
@@ -153,4 +69,3 @@ int ludcmp(int nmax, int n, double eps)
 	return(0);
 	
 }
-

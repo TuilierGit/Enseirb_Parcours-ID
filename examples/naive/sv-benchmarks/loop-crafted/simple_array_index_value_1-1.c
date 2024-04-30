@@ -1,18 +1,6 @@
-/* Benchmark used to verify Chimdyalwar, Bharti, et al. "VeriAbs: Verification by abstraction (competition contribution)." 
-International Conference on Tools and Algorithms for the Construction and Analysis of Systems. Springer, Berlin, Heidelberg, 2017.*/
-
 #define SIZE 1000
 extern void abort(void);
 #include <assert.h>
-void reach_error() { assert(0); }
-void __VERIFIER_assert(int cond)
-{
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
-
 int main()
 {
   unsigned int array[SIZE];
@@ -24,13 +12,10 @@ int main()
 
   for (index = 0; index < SIZE; index++) {
     if (index % 2 == 0) {
-      __VERIFIER_assert(array[index] == 0);
+//@ assert array[index] == 0;
     } else {
-      __VERIFIER_assert(array[index] != 0);
+//@ assert array[index] != 0;
     }
   }
 
 }
-
-
-

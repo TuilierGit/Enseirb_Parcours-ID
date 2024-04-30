@@ -1,14 +1,3 @@
-extern void abort(void);
-#include <assert.h>
-void reach_error() { assert(0); }
-
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
-typedef int Char;
 #define MAXPATHLEN 1
 
 Char *tmp;
@@ -19,7 +8,7 @@ int glob2 (Char *pathbuf, Char *pathlim)
 
   for (p = pathbuf; p <= pathlim; p++) {
     /* BAD */
-    __VERIFIER_assert(p<=tmp);
+//@ assert p<=tmp;
     *p = 1;
   }
 

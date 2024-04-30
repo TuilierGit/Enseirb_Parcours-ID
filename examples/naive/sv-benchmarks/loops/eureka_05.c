@@ -1,14 +1,3 @@
-extern void abort(void);
-#include <assert.h>
-void reach_error() { assert(0); }
-
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
-
 #define SIZE 5
 
 int array[SIZE];
@@ -38,7 +27,6 @@ int main(void){
 	SelectionSort();
 
 	for(i=0; i<SIZE; i++)
-		__VERIFIER_assert(array[i]==i);
+//@ assert array[i]==i;
 
 }
-

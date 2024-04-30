@@ -1,16 +1,3 @@
-extern void abort(void);
-#include <assert.h>
-void reach_error() { assert(0); }
-extern char __VERIFIER_nondet_char();
-
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-    ERROR: {reach_error();abort();}
-  }
-  return;
-}
-
-#ifndef _BASE_H
 #define _BASE_H
 
 /* Only #define it if it hasn't already been defined using -D */
@@ -70,21 +57,6 @@ int istrstr(const char *haystack, const char *needle);
 
 /* Hackish duplicate functions to enable us to determine which claims
  * are relevant. Oh, the hilarity. */
-char *r_strncpy (char *dest, const char *src, size_t n){return strncpy(dest,src,n);}
-char *r_strcpy (char *dest, const char *src);
-char *r_strcat(char *dest, const char *src);
-char *r_strncat(char *dest, const char *src, size_t n);
-void *r_memcpy(void *dest, const void *src, size_t n);
-
-#endif
-
-typedef unsigned int u_int;
-typedef unsigned char u_int8_t;
-
-struct ieee80211_scan_entry {
-  u_int8_t *se_rsn_ie;            /* captured RSN ie */
-};
-
 #define IEEE80211_ELEMID_RSN 200 /* fake */
 
 /* Size of an array leader[] which is written to buf[] before it is
@@ -174,7 +146,7 @@ static int parse_expression_list(char *str)
         }
         /* OK */
         r_strncpy(str2, str+start, j-start+1);
-        __VERIFIER_assert(j - start + 1 < EXPRESSION_LENGTH);
+//@ assert j - start + 1 < EXPRESSION_LENGTH;
         str2[j-start+1] = EOS;
       } else {
         /* parsing error */

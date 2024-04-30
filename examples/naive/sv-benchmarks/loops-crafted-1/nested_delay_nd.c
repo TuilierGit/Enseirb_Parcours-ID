@@ -1,22 +1,3 @@
-extern void abort(void);
-extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "nested_delay_nd.c", 3, "reach_error"); }
-extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern int __VERIFIER_nondet_int(void);
-int last ;
-void __VERIFIER_assert(int cond) {
-  if (!(cond)) {
-     ERROR: {reach_error();abort();}
-  }
-  return;
-}
-
-
-int SIZE = 200000; 
-
 int main()
 {
 	last = __VERIFIER_nondet_int();
@@ -41,7 +22,7 @@ int main()
 			b = 1;
 		}
 			
-		__VERIFIER_assert(a==b && c==SIZE);
+//@ assert a==b && c==SIZE;
 	}
 	return 0;
 }
