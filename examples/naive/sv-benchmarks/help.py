@@ -58,7 +58,7 @@ def transformer_et_ecrire_dossier(chemin_dossier):
             transformer_et_ecrire_fichier(chemin_fichier)
 
 
-# dossier_a_traiter = "./loop-acceleration"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
-# transformer_et_ecrire_dossier(dossier_a_traiter)
-fichier_a_traiter = "./loop-acceleration/array_1-1.c"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
-transformer_et_ecrire_fichier(fichier_a_traiter)
+dossier_a_traiter = "./loop-crafted"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
+transformer_et_ecrire_dossier(dossier_a_traiter)
+# fichier_a_traiter = "./loop-acceleration/array_1-1.c"  # Remplacez "chemin_vers_le_dossier" par le chemin de votre dossier
+# transformer_et_ecrire_fichier(fichier_a_traiter)
