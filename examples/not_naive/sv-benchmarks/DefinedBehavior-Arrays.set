@@ -1,3 +1,0 @@
-# Contains tasks for checking whether the program might run into undefined behavior.
-array-examples/*.yml
-reducercommutativity/*.yml
