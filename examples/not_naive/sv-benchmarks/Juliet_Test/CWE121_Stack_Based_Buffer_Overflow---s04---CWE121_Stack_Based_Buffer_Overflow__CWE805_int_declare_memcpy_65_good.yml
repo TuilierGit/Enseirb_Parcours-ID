@@ -1,0 +1,12 @@
+format_version: '2.0'
+
+input_files: 'CWE121_Stack_Based_Buffer_Overflow---s04---CWE121_Stack_Based_Buffer_Overflow__CWE805_int_declare_memcpy_65_good.i'
+
+properties:
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
+
+options:
+  language: C
+  data_model: LP64

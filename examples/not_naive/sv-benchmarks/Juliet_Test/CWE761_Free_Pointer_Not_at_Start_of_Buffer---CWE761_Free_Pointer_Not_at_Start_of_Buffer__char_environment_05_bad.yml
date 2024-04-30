@@ -1,0 +1,12 @@
+format_version: '2.0'
+
+input_files: 'CWE761_Free_Pointer_Not_at_Start_of_Buffer---CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_environment_05_bad.i'
+
+properties:
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: false
+  - property_file: ../properties/coverage-branches.prp
+
+options:
+  language: C
+  data_model: LP64

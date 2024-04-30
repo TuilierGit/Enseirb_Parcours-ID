@@ -1,0 +1,2 @@
+# Contains problems from the GNU coreutils
+goblint-coreutils/*.yml

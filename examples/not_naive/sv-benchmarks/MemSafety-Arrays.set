@@ -1,0 +1,18 @@
+# Contains tasks for checking memory safety of array-based programs.
+array-fpi/*.yml
+array-memsafety/*.yml
+array-examples/*.yml
+array-memsafety-realloc/*.yml
+termination-15/*.yml
+termination-crafted-lit/HeizmannHoenickeLeikePodelski-ATVA2013-Fig7.yml
+termination-crafted/Arrays*.yml
+termination-crafted/LexIndexValue*.yml
+termination-crafted/NonTermination*.yml
+termination-dietlibc/*.yml
+termination-memory-alloca/*.yml
+verifythis/duplets.yml
+verifythis/elimination_max.yml
+verifythis/lcp.yml
+verifythis/prefixsum_iter.yml
+verifythis/elimination_max_rec.yml
+verifythis/elimination_max_rec_onepoint.yml
