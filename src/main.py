@@ -11,7 +11,7 @@ import argparse
 
 load_dotenv()
 
-list_of_model = ["Llama 3 Falcon", "Nous Hermes 2 Mistral DPO", "Mistrral Instruct", "Mistral OpenOrca", "GPT4All Falcon", "Orca 2 (Medium)"]
+list_of_model = ["Llama 3 Instruct", "Nous Hermes 2 Mistral DPO", "Mistral Instruct", "Mistral OpenOrca", "GPT4All Falcon", "Orca 2 (Medium)"]
 openai.api_base = "http://localhost:4891/v1"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -30,9 +30,9 @@ def run(path,myModel,no_color):
 
 def main(no_color):
 
-    for LLM_model in list_of_model:
-        myModel = model(LLM_model)
-        print(f"model: {LLM_model}")
+    for my_LLM_model in list_of_model:
+        myModel = model(my_LLM_model)
+        print(f"model: {my_LLM_model}")
 
         run("./examples/naive/examples-article/loops-count_up_down-1.c",myModel,no_color)
         run("./examples/naive/examples-article/underapprox_1-2.c",myModel,no_color)
