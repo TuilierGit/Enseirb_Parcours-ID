@@ -1,4 +1,9 @@
-# Enseirb_Parcours-ID
+# SE205 - Initiation à la recherche
+
+Auteurs :
+
+- Tuilier Thomas
+- Apel Caroline
 
 Espace de travail pour le module SE205 “Initiation à la recherche” de l'Enseirb-Matmeca. Le but de ce projet est d'analyser les expériences de la thèse suivante :
 
