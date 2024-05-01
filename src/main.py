@@ -34,16 +34,16 @@ def main(no_color):
         myModel = model(my_LLM_model)
         print(f"model: {my_LLM_model}")
 
-        run("./examples/naive/examples-article/loops-count_up_down-1.c",myModel,no_color)
-        run("./examples/naive/examples-article/underapprox_1-2.c",myModel,no_color)
-        run("./examples/naive/examples-article/benchmark04_conjunctive.c",myModel,no_color)
+        # run("./examples/naive/examples-article/loops-count_up_down-1.c",myModel,no_color)
+        # run("./examples/naive/examples-article/underapprox_1-2.c",myModel,no_color)
+        # run("./examples/naive/examples-article/benchmark04_conjunctive.c",myModel,no_color)
 
-        # chemin_dossier =  "./examples/naive/sv-benchmarks/loop-acceleration/"
-        # for nom_fichier in os.listdir(chemin_dossier):
-        #     chemin_fichier = os.path.join(chemin_dossier, nom_fichier)
-        #     if os.path.isfile(chemin_fichier):
-        #         run(chemin_fichier,myModel,no_color)
-        #         print("\n=========================================\n")
+        chemin_dossier =  "./examples/naive/sv-benchmarks/loop-zilu/"
+        for nom_fichier in os.listdir(chemin_dossier):
+            chemin_fichier = os.path.join(chemin_dossier, nom_fichier)
+            if os.path.isfile(chemin_fichier):
+                run(chemin_fichier,myModel,no_color)
+                print("\n=========================================\n")
 
 
 if __name__ == "__main__":
