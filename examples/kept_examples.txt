@@ -5,7 +5,7 @@ array3.c
 diamond_2-2.c
 underapprox_1-1.c
 
-**loop_invariants**
+**loop-invariants**
 
 even.c
 linear-inequality-inv-a.c
@@ -15,7 +15,7 @@ linear-inequality-inv-a.c
 deep_nested.c
 nested_1.c
 
-**loop_zilu**
+**loop-zilu**
 
 benchmark01_conjunctive.c
 benchmark12_linear.c
@@ -31,6 +31,6 @@ terminator_01.c
 **loops-crafted-1**
 
 in-de20.c
-mono-crafted_1.C
+mono-crafted_1.c
 sumt9.c
 vnew1.c

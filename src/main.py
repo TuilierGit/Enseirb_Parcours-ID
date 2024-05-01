@@ -34,16 +34,43 @@ def main(no_color):
         myModel = model(my_LLM_model)
         print(f"model: {my_LLM_model}")
 
+        
+        run("./examples/naive/sv-benchmarks/loop-acceleration/array_1-1.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-acceleration/array3.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-acceleration/diamond_2-2.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-acceleration/underapprox_1-1.c",myModel,no_color)
+
+        run("./examples/naive/sv-benchmarks/loop-invariants/even.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-invariants/linear-inequality-inv-a.c",myModel,no_color)
+
+        run("./examples/naive/sv-benchmarks/loop-simple/deep-nested.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-simple/nested_1.c",myModel,no_color)
+
+        run("./examples/naive/sv-benchmarks/loop-zilu/benchmark01_conjunctive.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-zilu/benchmark12_linear.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loop-zilu/benchmark31_disjunctive.c",myModel,no_color)
+
+        run("./examples/naive/sv-benchmarks/loops/array-1.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loops/matrix-1.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loops/terminator_01.c",myModel,no_color)
+
+        run("./examples/naive/sv-benchmarks/loops-crafted-1/in-de20.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loops-crafted-1/mono-crafted_1.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loops-crafted-1/sumt9.c",myModel,no_color)
+        run("./examples/naive/sv-benchmarks/loops-crafted-1/vnew1.c",myModel,no_color)
+
+        print("\n=========================================\n")
+
         # run("./examples/naive/examples-article/loops-count_up_down-1.c",myModel,no_color)
         # run("./examples/naive/examples-article/underapprox_1-2.c",myModel,no_color)
         # run("./examples/naive/examples-article/benchmark04_conjunctive.c",myModel,no_color)
 
-        chemin_dossier =  "./examples/naive/sv-benchmarks/loop-zilu/"
-        for nom_fichier in os.listdir(chemin_dossier):
-            chemin_fichier = os.path.join(chemin_dossier, nom_fichier)
-            if os.path.isfile(chemin_fichier):
-                run(chemin_fichier,myModel,no_color)
-                print("\n=========================================\n")
+        # chemin_dossier =  "./examples/naive/sv-benchmarks/loop-zilu/"
+        # for nom_fichier in os.listdir(chemin_dossier):
+        #     chemin_fichier = os.path.join(chemin_dossier, nom_fichier)
+        #     if os.path.isfile(chemin_fichier):
+        #         run(chemin_fichier,myModel,no_color)
+        #         print("\n=========================================\n")
 
 
 if __name__ == "__main__":

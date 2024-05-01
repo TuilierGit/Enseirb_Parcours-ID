@@ -4,3 +4,4 @@ pid-env
 gpt-4-all
 __pycache__
 cpaChecker
+.~lock.*
