@@ -1,0 +1,548 @@
+model: Llama 3 Instruct
+nested_3.c
+The loop invariant is that the values of `a`, `b` and `c` are always less than or equal to their initial values.
+
+//@ loop invariant mask : a <= 0 && b <= 6 && c <= 6 ;
+
+=========================================
+
+nested_6.c
+The loop invariant is that the values of a, b, c, d, e, and f are always less than or equal to their initial values.
+
+//@ loop invariant mask : (a <= 6) && (b <= 6) && (c <= 6) && (d <= 6) && (e <= 6) && (f <= 6);
+
+=========================================
+
+nested_1.c
+The loop invariant is that the value of `a` remains unchanged throughout the execution of the loop. This can be formally stated as:
+
+//@ assert a == \old(a) ; 
+// @loop invariant mask : a; 
+
+Note: `\old(a)` denotes the value of `a` before the current iteration of the loop, and `mask` is just an arbitrary variable that does not affect the correctness of the annotation.
+
+=========================================
+
+nested_1b.c
+The loop invariant for the given C code is:
+
+//@ loop invariant a <= 5;
+
+This means that at any point during the execution of the loop, the value of `a` will always be less than or equal to 5. This condition holds true before and after each iteration of the loop.
+
+//@ loop invariant mask : a <= 5;
+
+=========================================
+
+nested_5.c
+The loop invariant is that the values of a, b, c, d, and e are always less than or equal to their initial values.
+
+//@ loop invariant mask : (0 <= a && a <= 6) && (0 <= b && b <= 6) && (0 <= c && c <= 6) && (0 <= d && d <= 6) && (0 <= e && e <= 6);
+
+=========================================
+
+nested_4.c
+The loop invariant is that the values of `a`, `b`, `c`, and `d` are always less than or equal to their initial values.
+
+//@ loop invariant mask : a <= 6 && b <= 6 && c <= 6 && d <= 6 ;
+
+=========================================
+
+nested_2.c
+The loop invariant for the annotated loop is:
+
+//@ loop invariant a <= 5;
+//@ loop invariant b <= 5;
+
+This means that at any point during the execution of the inner and outer loops, `a` will always be less than or equal to 5, and similarly for `b`.
+
+//@ loop invariant mask : {a <= 5} && {b <= 5};
+
+=========================================
+
+deep-nested.c
+The loop invariant is that the values of `a`, `b`, `c`, `d`, and `e` are all less than `uint32_max - 1`.
+
+//@ loop invariant mask : a <= uint32_max - 2 && b < uint32_max - 1 && c < uint32_max - 1 && d < uint32_max - 1 && e < uint32_max - 1;
+
+=========================================
+
+model: Nous Hermes 2 Mistral DPO
+nested_3.c
+//@ loop invariant mask : a == 6 || (0 <= a < 6 && a == c);
+
+int main() {
+	int a = 6;
+	int b = 6;
+	int c = 6;
+
+
+	for(a = 0; a < 6; ++a) {
+		//@ loop invariant: 0 <= a && a < 6 && 0 <= c && c < 6 && (b == 6 || (0 <= b < 6 && b == c)) ;
+		for(b = 0; b < 6; ++b) {
+			//@ loop invariant: 0 <= a && a < 6 && 0 <= c && c < 6 && 0 <= b && b < 6 && (a == 6 || (0 <= a < 6 && a == c)) && (b == 6 || (0 <= b < 6 && b == c));
+			for(c = 0; c < 6; ++c) {
+
+			}
+		}
+	}
+	if(!(a == 6 && b == 6 && c == 6 )) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_6.c
+//@ loop invariant mask : a == 6 && b == 6 && c == 6 && d == 6 && e == 6 && f == 6 ;
+//@ assert (\false);
+int main() {
+	int a = 6;
+	int b = 6;
+	int c = 6;
+	int d = 6;
+	int e = 6;
+	int f = 6;
+
+	for(a = 0; a < 6; ++a) {
+		for(b = 0; b < 6; ++b) {
+			for(c = 0; c < 6; ++c) {
+				for(d = 0; d < 6; ++d) {
+					for(e = 0; e < 6; ++e) {
+						for(f = 0; f < 6; ++f) {
+
+						}
+					}
+				}
+			}
+		}
+	}
+	if(!(a == 6 && b == 6 && c == 6 && d == 6 && e == 6 && f == 6)) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_1.c
+//@ loop invariant mask : false ;
+
+int main() {
+	int a = 6;
+
+
+	for(a = 0; a < 6; ++a) {
+		//@ assert (\forall int i; 0 <= i < a && i:natural ==> a == (i + 1)) ;
+	}
+	if(!(a == 6 )) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_1b.c
+//@ loop invariant mask : a == 6 ;
+
+int main() {
+	int a = 6;
+
+
+	for(a = 0; a < 6; ++a) {
+	}
+	if(a == 6 ) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_5.c
+//@ loop invariant mask : a == 6, b == 6, c == 6, d == 6, e == 6 ;
+//@ assert \false; // Remove this line when the code is correct. It's here to prevent ACSL from thinking that the initial state is an invariant.
+
+=========================================
+
+nested_4.c
+//@ loop invariant mask : a == 6 && b == 6 && c == 6 && d == 6 ;
+//@ assert (\false); // Remove this line once the code is fixed.
+
+int main() {
+	int a = 6;
+	int b = 6;
+	int c = 6;
+	int d = 6;
+
+
+	for(a = 0; a < 6; ++a) {
+		for(b = 0; b < 6; ++b) {
+			for(c = 0; c < 6; ++c) {
+				for(d = 0; d < 6; ++d) {
+
+				}
+			}
+		}
+	}
+	if(!(a == 6 && b == 6 && c == 6 && d == 6 )) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_2.c
+//@ loop invariant mask : a == 0 || (0 <= a < 6 && 0 <= b < 6);
+//@ assert (\false);
+
+int main() {
+	int a = 6;
+	int b = 6;
+
+
+	for(a = 0; a < 6; ++a) {
+		for(b = 0; b < 6; ++b) {
+
+		}
+	}
+	if(!(a == 6 && b == 6)) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+deep-nested.c
+//@ loop invariant mask1 : \false ;
+//@ loop invariant mask2 : \false ;
+//@ loop invariant mask3 : \false ;
+//@ loop invariant mask4 : \false ;
+//@ loop invariant mask5 : \false ;
+
+int main() {
+	unsigned a, b, c, d, e;
+
+	unsigned uint32_max;
+	uint32_max = 0xffffffff;
+
+	for (a = 0; a < uint32_max - 1; ++a) {
+		//@ loop invariant mask1 : a <= (uint32_max - 1);
+		for (b = 0; b < uint32_max - 1; ++b) {
+			//@ loop invariant mask2 : b <= (uint32_max - 1) && a == (uint32_max - 1) || a <= b ;
+			for (c = 0; c < uint32_max - 1; ++c) {
+				//@ loop invariant mask3 : c <= (uint32_max - 1) && a == (uint32_max - 1) || a <= b || b <= c ;
+				for (d = 0; d < uint32_max - 1; ++d) {
+					//@ loop invariant mask4 : d <= (uint32_max - 1) && a == (uint32_max - 1) || a <= b || b <= c || c <= d ;
+					for (e = 0; e < uint32_max - 1; ++e) {
+						//@ loop invariant mask5 : e <= (uint32_max - 1) && a == (uint32_max - 1) || a <= b || b <= c || c <= d || d <= e ;
+						if ((a == b) && (b == c) && (c == d) && (d == e) && (e == (uint32_max - 2))) {
+							{reach
+
+=========================================
+
+model: Mistral Instruct
+nested_3.c
+//@ loop invariant mask : a + b + c == 3*i ; where i is the current iteration of the outermost loop.
+
+=========================================
+
+nested_6.c
+//@ loop invariant mask : a <= 5, b <= 5, c <= 5, d <= 5, e <= 5, f <= 5 ;
+
+=========================================
+
+nested_1.c
+//@ loop invariant mask : a >= 6 ;
+int main() {
+	int a = 6;
+
+	for(a = 0; a < 6; ++a) {
+
+	}
+	if(!(a == 6 )) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_1b.c
+//@ loop invariant mask : a >= 0 && a < 6 ;
+
+=========================================
+
+nested_5.c
+//@ loop invariant mask : a = b = c = d = e = X ; where X is the current value of any variable in the loop.
+
+=========================================
+
+nested_4.c
+//@ loop invariant mask : a + b + c + d = 24 ;
+
+=========================================
+
+nested_2.c
+//@ loop invariant mask : a is the current value of the outer loop counter and b is the current value of the inner loop counter.
+
+=========================================
+
+deep-nested.c
+//@ loop invariant mask : a <= uint32_max - 1 && b <= uint32_max - 1 && c <= uint32_max - 1 && d <= uint32_max - 1 && e <= uint32_max - 1;
+The computed loop invariant is that all variables (a, b, c, d, and e) are within the range of 0 to uint32\_max-1.
+
+=========================================
+
+model: Mistral OpenOrca
+nested_3.c
+//@ loop invariant mask : a < 6 ;
+ //@ loop invariant mask : b < 6 ;
+ //@ loop invariant mask : c < 6 ;
+
+=========================================
+
+nested_6.c
+//@ loop invariant mask : a < 6, b < 6, c < 6, d < 6, e < 6, f < 6 ;
+
+=========================================
+
+nested_1.c
+//@ loop invariant mask : a <= 5 ;
+
+=========================================
+
+nested_1b.c
+//@ loop invariant mask : a <= 5 ;
+
+=========================================
+
+nested_5.c
+//@ loop invariant mask : a <= 5 ;
+ //@ loop invariant mask : b <= 5 ;
+ //@ loop invariant mask : c <= 5 ;
+ //@ loop invariant mask : d <= 5 ;
+ //@ loop invariant mask : e <= 5 ;
+
+=========================================
+
+nested_4.c
+//@ loop invariant mask : a < 6, b < 6, c < 6, and d < 6 ;
+
+=========================================
+
+nested_2.c
+//@ loop invariant mask : a == 0 || (a > 0 && a < 6) ;
+ //@ loop invariant mask : b == 0 || (b > 0 && b < 6) ;
+
+=========================================
+
+deep-nested.c
+//@ loop invariant mask : a < uint32_max - 1 && b < uint32_max - 1 && c < uint32_max - 1 && d < uint32_max - 1 && e < uint32_max - 1;
+
+=========================================
+
+model: GPT4All Falcon
+nested_3.c
+//@ loop invariant mask : X ;
+The loop invariant for the annotated loop is that all the elements of the array a, b, and c are equal to each other. This can be expressed using the following ACSL annotations:
+```
+@ loop invariant mask : X ;
+X = (a == b) && (b == c) && (c == a);
+```
+The loop invariant mask is computed by applying the `==` operator to each pair of elements in the array, and then using the `&&` operator to combine the results. The resulting value is stored in the `X` variable, which can be used as a loop invariant mask for the loop.
+
+=========================================
+
+nested_6.c
+The loop invariant for the annotated loop is:
+```
+loop invariant mask : X ;
+```
+where X is the computed invariant.
+
+=========================================
+
+nested_1.c
+//@ loop invariant mask : X ;
+where X is the computed invariant.
+The loop invariant for this code is that the variable "a" will be incremented by 1 at each iteration of the loop, and it will never reach a value of 6. This can be expressed using the following ACSL annotations:
+
+//@ loop invariant mask : X ;
+where X is the computed invariant.
+
+In this case, the loop invariant is that the variable "a" will be incremented by 1 at each iteration of the loop, and it will never reach a value of 6.
+
+=========================================
+
+nested_1b.c
+//@ loop invariant mask : X ;
+X = { a = 6 };
+
+=========================================
+
+nested_5.c
+//@ loop invariant mask : X ;
+X = (a == 6 && b == 6 && c == 6 && d == 6 && e == 6) && (a == 6 && b == 6 && c == 6 && d == 6 && e == 6);
+
+=========================================
+
+nested_4.c
+//@ loop invariant mask : X ;
+X = (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c == 6 && d == 6) && (a == 6 && b == 6 && c ==
+
+=========================================
+
+nested_2.c
+The loop invariant for the annotated loop is:
+```
+loop invariant mask : X ;
+X = a == 6 && b == 6 ;
+```
+where X is the computed invariant.
+
+=========================================
+
+deep-nested.c
+The loop invariant for the annotated loop is that the loop will not execute if the condition (a == b) && (b == c) && (c == d) && (d == e) && (e == (uint32_max - 2)) is true. This can be achieved by using a loop invariant mask of X, where X is the computed invariant.
+
+=========================================
+
+model: Orca 2 (Medium)
+nested_3.c
+//@ loop invariant mask : X ;
+int main() {
+	int a = 0, b = 0, c = 0; // Initialize variables to zero
+	for(a < 6; ++a) { // Loop until a reaches 6
+		for(b < 6; ++b) { // Loop until b reaches 6
+			for(c < 6; ++c) { // Loop until c reaches 6
+//@ loop invariant mask : X ;
+			}
+		}
+	}
+	if(!(a == 6 && b == 6 && c == 6)) { // Check if the conditions are met
+		reach_error(); // If not, error occurs
+		return 1; // Return success otherwise
+	}
+
+=========================================
+
+nested_6.c
+//@ loop invariant mask : X ;
+int main() {
+	int a = 6;
+	int b = 6;
+	int c = 6;
+	int d = 6;
+	int e = 6;
+	int f = 6;
+
+	for(a = 0; a < 6; ++a) {
+		for(b = 0; b < 6; ++b) {
+			for(c = 0; c < 6; ++c) {
+				for(d = 0; d < 6; ++d) {
+					for(e = 0; e < 6; ++e) {
+						//@ loop invariant X ;
+						X = a + b + c + d + e + f; // Computed the sum of all variables
+					}
+				}
+			}
+		}
+	}
+
+=========================================
+
+nested_1.c
+//@ loop invariant mask : X ;
+int main() {
+	int a = 6;
+
+
+	for(a = 0; a < 6; ++a) { // start of loop iteration
+		X = a + 1; // compute the next value of X
+	}
+	return 1;
+}
+
+=========================================
+
+nested_1b.c
+//@ loop invariant mask : X ;
+int main() {
+	int a = 6;
+
+
+	for(a = 0; a < 6; ++a) { //loop invariant: a is always non-negative and less than 6
+}
+
+=========================================
+
+nested_5.c
+//@ loop invariant mask : X ;
+int main() {
+	int a = 6;
+	int b = 6;
+	int c = 6;
+	int d = 6;
+	int e = 6;
+
+	for(a = 0; a < 6; ++a) {
+		for(b = 0; b < 6; ++b) {
+			for(c = 0; c < 6; ++c) {
+				for(d = 0; d < 6; ++d) {
+					//@ loop invariant X ;
+					X = a + b + c + d + e; // compute the invariant based on the loop condition and variables
+				}
+			}
+		}
+	}
+	if(!(a == 6 && b == 6 && c == 6 && d == 6 && e == 6)) {
+		reach_error();
+	}
+	return 1;
+}
+
+=========================================
+
+nested_4.c
+//@ loop invariant mask : X ;
+int main() {
+	int a = 6; // initialize a to 6
+	int b = 6; // initialize b to 6
+	int c = 6; // initialize c to 6
+	int d = 6; // initialize d to 6
+
+for(a = 0; a < 6; ++a) { // loop 1
+	for(b = 0; b < 6; ++b) { // inner loop 1
+		for(c = 0; c < 6; ++c) { // inner loop 2
+			reach_error(); // this line causes the error, as it is not reachable
+		}
+	}
+}
+
+=========================================
+
+nested_2.c
+//@ loop invariant mask : X ;
+int a = 0, b = 0; // initial values of a and b
+for(;;) {
+    int c = 6 - (a + b); // computation using a and b
+    if(c < 0 || c > 5) { // check for invalid value of c
+        reach_error(); // handle error case
+    } else {
+        ++a; // increment a
+        ++b; // increment b
+    }
+}
+
+=========================================
+
+deep-nested.c
+//@ loop invariant mask : a, b, c, d, e ;
+
+=========================================
+
