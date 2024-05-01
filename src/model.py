@@ -52,5 +52,5 @@ class model:
 
 
     def response_with_long_prompt(self , program,number_of_answers=1 ):
-        GPT_Prompt = "Compute a loop invariant for the annotated loop including [invariant] in the following C code. Please use the format of ACSL annotations and always end your response with //@ loop invariant mask : X ; where X is the computed invariant.\n\n" + program,
+        GPT_Prompt = "Compute a loop invariant for the annotated loop including [invariant] in the following C code. Please use the format of ACSL annotations and always end your response with \n//@ loop invariant mask : X ;\n where X is the computed invariant.\n\n" + program,
         return self.ask_my_model(GPT_Prompt,number_of_answers)

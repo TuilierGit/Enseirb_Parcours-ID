@@ -1,6 +1,11 @@
 run:
 	python3 ./src/main.py
 
+
+save:
+	python3 ./src/main.py --no-color > ./data/output.txt
+
+
 gpt4all:
 	./~/Software/GPT-4-all/bin/chat
 
