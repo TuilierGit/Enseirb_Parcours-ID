@@ -1,0 +1,2 @@
+iv = valid invariant generated
+ni = no invariant generated
